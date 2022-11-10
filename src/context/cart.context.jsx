@@ -47,9 +47,10 @@ export const CART_ACTION_TYPES = {
   REMOVE_CART_ITEM: "REMOVE_CART_ITEM",
   CLEAR_CART_ITEM: "CLEAR_CART_ITEM",
   CLEAR_CART: "CLEAR_CART",
+  TOGGLE_CART: "TOGGLE_CART",
 };
 export const CartProvider = ({ children }) => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  // const [isCartOpen, setIsCartOpen] = useState(false);
   // const [cartItems, setCartItems] = useState([]);
   // const [cartCount, setCartCount] = useState(0);
   // const [cartTotal, setCartTotal] = useState(0);
@@ -57,6 +58,7 @@ export const CartProvider = ({ children }) => {
     cartItems: [],
     cartCount: 0,
     cartTotal: 0,
+    isCartOpen: false,
   };
 
   const newCartCount = (cartItems) =>
@@ -105,15 +107,19 @@ export const CartProvider = ({ children }) => {
           cartItems: newCartItems,
         };
       }
+      case CART_ACTION_TYPES.TOGGLE_CART:
+        const { isCartOpen } = state;
+        return {
+          ...state,
+          isCartOpen: !isCartOpen,
+        };
       default:
         throw new Error(`Unhandled type ${type} in cartReducer`);
     }
   };
 
-  const [{ cartItems, cartCount, cartTotal }, dispatch] = useReducer(
-    cartReducer,
-    INITIAL_STATE
-  );
+  const [{ cartItems, cartCount, cartTotal, isCartOpen }, dispatch] =
+    useReducer(cartReducer, INITIAL_STATE);
   // useEffect(() => {
   //   const newCartCount = cartItems.reduce(
   //     (total, cartItem) => total + cartItem.quantity,
@@ -151,6 +157,13 @@ export const CartProvider = ({ children }) => {
       payload: { cartItemToClear },
     });
     // setCartItems(clearCartItem(cartItems, cartItemToClear));
+  };
+
+  const setIsCartOpen = () => {
+    dispatch({
+      type: CART_ACTION_TYPES.TOGGLE_CART,
+      payload: !isCartOpen,
+    });
   };
   const value = {
     isCartOpen,
