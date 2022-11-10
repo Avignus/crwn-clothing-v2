@@ -1,11 +1,12 @@
-import "./sign-up-form.styles.scss";
+import "./sign-up-form.styles.jsx";
 import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import FormInputComponent from "../form-input/form-input.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { SignUpContainer } from "./sign-up-form.styles.jsx";
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -52,11 +53,11 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignUpContainer className="sign-up-container">
       <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
-        <FormInput
+        <FormInputComponent
           value={displayName}
           type="text"
           name="displayName"
@@ -64,7 +65,7 @@ const SignUpForm = () => {
           required
           label="Display name"
         />
-        <FormInput
+        <FormInputComponent
           label="Email"
           value={email}
           type="text"
@@ -72,7 +73,7 @@ const SignUpForm = () => {
           onChange={handleChange}
           required
         />
-        <FormInput
+        <FormInputComponent
           label="Password"
           value={password}
           type="text"
@@ -80,7 +81,7 @@ const SignUpForm = () => {
           onChange={handleChange}
           required
         />
-        <FormInput
+        <FormInputComponent
           label="Confirm Password"
           value={confirmPassword}
           type="text"
@@ -88,11 +89,11 @@ const SignUpForm = () => {
           onChange={handleChange}
           required
         />
-        <Button type="submit" buttonType="inverted">
+        <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.inverted}>
           Sign Up
         </Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 
