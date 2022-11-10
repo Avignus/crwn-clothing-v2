@@ -17,7 +17,9 @@ const CheckoutItem = ({ cartItem }) => {
 
   const clearItemHandler = () => clearItemFromCart(cartItem);
   const addItemHandler = () => addItemToCart(cartItem);
-  const removeItemHandler = () => removeItemFromCart(cartItem);
+  const removeItemHandler = () => {
+    removeItemFromCart(cartItem);
+  };
   return (
     <CheckoutItemContainer>
       <ImageContainer>

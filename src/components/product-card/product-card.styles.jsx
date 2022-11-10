@@ -9,7 +9,7 @@ export const ProductCardContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   position: relative;
-  top: 80px;
+  left: 35px;
   button {
     width: 80%;
     opacity: 0.7;

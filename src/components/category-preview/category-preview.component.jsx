@@ -7,7 +7,7 @@ import {
 } from "./category-preview.styles.jsx";
 const CategoryPreview = ({ title, products }) => {
   return (
-    <CategoryPreviewContainer className="category-preview-container">
+    <CategoryPreviewContainer>
       <h2>
         <Link to={`/shop/${title}`}>
           <span>{title.toUpperCase()}</span>
