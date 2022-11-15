@@ -1,5 +1,8 @@
 import { createContext, useReducer } from "react";
+import { useSelector } from "react-redux";
 import { createAction } from "../utils/reducer/reducer.utils";
+import { useDispatch } from "react-redux";
+import { selectCart } from "../store/cart/cart.selector";
 export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
@@ -74,8 +77,11 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const [{ cartItems, cartCount, cartTotal, isCartOpen }, dispatch] =
-    useReducer(cartReducer, INITIAL_STATE);
+  // const [{ cartItems, cartCount, cartTotal, isCartOpen }, dispatch] =
+  //   useReducer(cartReducer, INITIAL_STATE);
+  const dispatch = useDispatch();
+  const { cartItems, cartCount, cartTotal, isCartOpen } =
+    useSelector(selectCart);
   const updateCartItemsReducer = (newCartItems) => {
     const newCartTotal = (cartItems) =>
       cartItems?.reduce(

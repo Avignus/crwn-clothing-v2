@@ -1,0 +1,4 @@
+export const CART_ACTION_TYPES = {
+  SET_CART_ITEM: "SET_CART_ITEM",
+  TOGGLE_CART: "TOGGLE_CART",
+};
