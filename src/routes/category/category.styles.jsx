@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const CategoryTitle = styled.h2`
   font-size: 38px;
-  margin-bottom: 25px;
+  margin-bottom: 100px;
   text-align: center;
 `;
 
