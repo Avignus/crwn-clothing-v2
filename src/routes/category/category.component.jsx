@@ -13,7 +13,6 @@ const Category = () => {
 
   useEffect(() => {
     if (categoriesMap !== undefined) {
-      console.log("effect fired calling setProducts");
       setProducts(categoriesMap[category]);
     }
   }, [category, categoriesMap]);

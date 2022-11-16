@@ -1,13 +1,10 @@
-import { useContext } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
-// import { UserContext } from "../../context/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import "./navigation.styles.jsx";
-import { CartContext } from "../../context/cart.context";
 import {
   NavigationContainer,
   NavLinks,
@@ -15,13 +12,18 @@ import {
   LogoContainer,
 } from "./navigation.styles.jsx";
 import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { toggleCart } from "../../store/cart/cart.action";
 const Navigation = () => {
-  // const { currentUser } = useContext(UserContext);
   const signOutHandler = async () => {
     signOutUser();
   };
   const currentUser = useSelector(selectCurrentUser);
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
+  const dispatch = useDispatch();
+  const setIsCartOpen = (boolean) => {
+    dispatch(toggleCart(boolean));
+  };
   return (
     <>
       <NavigationContainer>
