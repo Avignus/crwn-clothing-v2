@@ -8,7 +8,7 @@ import {
   EmptyMessage,
 } from "./cart-dropdown.styles.jsx";
 import { useSelector } from "react-redux";
-import { selectCartItems } from "../../store/cart/cart.selector.js";
+import { selectCartItems } from "../../store/cart/cart.selector";
 const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();
